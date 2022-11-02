@@ -94,8 +94,30 @@ function handleFormSubmission(event) {
   document.querySelector("input#new-address").value = null;
 }
 
+function additionalAddress() {
+  let newAddressContainer = document.createElement('div');
+  let newAddressLabel = document.createElement('label');
+  let newAddressInput = document.createElement('input');
+  let additionalAddressDisplay = document.createElement('p');
+  let currentAddressContainer = document.getElementById('address-container');
+  let currentAddressDisplay = document.getElementsByClassName('address');
+  newAddressContainer.setAttribute('class', 'form-group');
+  newAddressLabel.innerText = 'Additional address'
+  newAddressLabel.setAttribute('for', 'new-address-2')
+  newAddressInput.setAttribute('type', 'text');
+  newAddressInput.setAttribute('class', 'form-control');
+  newAddressInput.setAttribute('id', 'new-address-2');
+  newAddressInput.setAttribute('name', 'new-address-2');
+  additionalAddressDisplay.innerText = "Additional address: "
+  currentAddressContainer.after(newAddressContainer);
+  newAddressContainer.append(newAddressLabel);
+  newAddressContainer.append(newAddressInput);
+  currentAddressDisplay.after(additionalAddressDisplay);
+}
+
 window.addEventListener("load", function (){
   document.querySelector("form#new-contact").addEventListener("submit", handleFormSubmission);
   document.querySelector("div#contacts").addEventListener("click", displayContactDetails);
   document.querySelector("button.delete").addEventListener("click", handleDelete);
+  document.getElementById('additional-address-button').addEventListener('click', additionalAddress);
 });
